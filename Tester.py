@@ -5,9 +5,6 @@ import os
 import datetime
 
 
-#make sure duplicate events don't show up
-events = set()
-
 def configure():
     load_dotenv()
 
@@ -51,10 +48,6 @@ def wisc_calendar():
         html = response.text
         soup = BeautifulSoup(html, 'html.parser')
 
-        # titles = soup.find_all('h3', class_="event-title")
-        # times = soup.find_all('p', class_="event-time")
-        # locations = soup.find_all('p', class_="event-location")
-
         events = soup.find_all('div', class_='event-details')
 
         for event in events:
@@ -87,5 +80,6 @@ if __name__ == '__main__':
     s = requests.Session()
 
     events_wisc = wisc_calendar()
+    print(events_wisc)
 
 
